@@ -33,7 +33,7 @@ from torchvision import models as torchvision_models
 import utils
 import vision_transformer as vits
 from vision_transformer import DINOHead
-from mobilenet import mobilenetv3_small_k5,mobilenetv3_small_k7,mobilenetv3_small_k9,mobilenetv3_small_k11
+from mobilenet import mobilenetv3_small_k7,mobilenetv3_small_k9,mobilenetv3_small_k11,mobilenetv3_small
 
 torchvision_archs = sorted(name for name in torchvision_models.__dict__
     if name.islower() and not name.startswith("__")
@@ -164,8 +164,8 @@ def train_dino(args):
     # we changed the name DeiT-S for ViT-S to avoid confusions
     if args.arch=='mobilenet':
         if args.kernel_size==5:
-            student = mobilenetv3_small_k5()
-            teacher = mobilenetv3_small_k5()
+            student = mobilenetv3_small()
+            teacher = mobilenetv3_small()
             embed_dim = student.fc.weight.shape[1]
         elif args.kernel_size==7:
             student = mobilenetv3_small_k7()
